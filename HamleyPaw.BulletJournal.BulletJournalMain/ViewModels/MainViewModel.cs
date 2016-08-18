@@ -1,19 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using HamleyPaw.BulletJournal.Services;
 
 namespace HamleyPaw.BulletJournal.BulletJournalMain.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
-        private IModelService _ModelService;
+        // Repsonsibility:
+        // Main app control, start/stop.
+        // Container for sub VM's
 
-        public MainViewModel(IModelService modelService)
+        // At present, this is restricted to a single sub-VM
+        // the Day Planner
+
+        private readonly DayPlannerViewModel _DayPlanner = new DayPlannerViewModel();
+
+        public MainViewModel()
         {
-            _ModelService = modelService;
+            
+        }
+
+        public DayPlannerViewModel DayPlanner
+        {
+            get { return _DayPlanner; }
         }
     }
 }
